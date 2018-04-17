@@ -1,0 +1,25 @@
+{
+  "name": "workflow",
+  "version": "1.0.0",
+  "description": "workflow using Gulp and SCSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quiquepr69/Workflow.git"
+  },
+  "keywords": [
+    "SCSS",
+    "Gulp",
+    "Git",
+    "NPM"
+  ],
+  "author": "Carlos Montalvo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quiquepr69/Workflow/issues"
+  },
+  "homepage": "https://github.com/quiquepr69/Workflow#readme"
+}
