@@ -5,5 +5,10 @@ $tealColor: #0CC0A4;
 }
 body{
     background-color: $tealColor;
+}
+h1{
     color:#fff;
+}
+h1:hover{
+    transition: color 1s ease;
 }
