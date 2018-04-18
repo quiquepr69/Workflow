@@ -7,4 +7,4 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('site/css'));
 });
 
-gulp.task('default');
+gulp.task('default',['sass']);
