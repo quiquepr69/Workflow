@@ -54,7 +54,7 @@ gulp.task('serve', ['sass'], function(){
     })
 });
 //watches
-gulp.task('watch', ['sass','serve','copy','clean-html','clean-js','scripts'], function(){
+gulp.task('watch', ['sass','serve','copy','scripts','clean-html','clean-js'], function(){
     gulp.watch([SOURCEPATH.sass], ['sass']);
     gulp.watch([SOURCEPATH.html], ['copy']);
     gulp.watch([SOURCEPATH.jsSource], ['scripts']);
