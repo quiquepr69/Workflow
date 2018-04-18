@@ -1,8 +1,9 @@
-$tealColor: '#0CC0A4';
+$tealColor: #0CC0A4;
 *{
     margin:0;
     padding:0;
 }
 body{
-    background: $tealColor;
+    background-color: $tealColor;
+    color:#fff;
 }
