@@ -3,8 +3,10 @@ const sass = require('gulp-sass');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const autoPrefix = require('gulp-autoprefixer');
+const browserify = require('gulp-browserify');
 const clean = require('gulp-clean');
 const concat = require('gulp-concat');
+
 //variables for paths
 
 const SOURCEPATH ={
@@ -40,7 +42,8 @@ gulp.task('sass', function(){
 gulp.task('scripts', ['clean-js'],function(){
     gulp.src(SOURCEPATH.jsSource)
     .pipe(concat('main.js'))
-    .pipe(gulp.dest(SITEPATH.js));
+    .pipe(browserify())
+    .pipe(gulp.dest(SITEPATH.js))
 });
 
 gulp.task('copy', ['clean-html'], function(){
