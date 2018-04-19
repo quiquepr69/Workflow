@@ -9,7 +9,7 @@ const clean = require('gulp-clean');
 const SOURCEPATH ={
     sass: 'src/scss/*.scss',
     html: 'src/*.html',
-    jsSource: 'src/js/*.js'
+    jsSource: 'src/js/**'
 }
 
 const SITEPATH = {
