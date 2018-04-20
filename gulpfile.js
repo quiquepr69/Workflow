@@ -19,7 +19,8 @@ const SOURCEPATH ={
 const SITEPATH = {
     root: 'site/',
     css: 'site/css',
-    js: 'site/js'
+    js: 'site/js',
+    fonts:'site/fonts'
 }
 //tasks 
 gulp.task('clean-html', function(){
@@ -36,13 +37,18 @@ gulp.task('sass', function(){
     var bootstraCSS = gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css');
     var sassFiles;
     sassFiles =  gulp.src(SOURCEPATH.sass)
+    //  var fontAwesome = gulp.src('./node_modules/@fortawesome/fontawesome/styles.css');
     .pipe(autoPrefix())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         return merge(bootstraCSS, sassFiles)
         .pipe(concat('site.css'))
         .pipe(gulp.dest(SITEPATH.css));
-    
 });
+
+/*gulp.task('moveFonts', function(){
+    gulp.src('./node_modules/@fortawesome/fontawesome/styles.css')
+        .pipe(gulp.dest(SITEPATH.css));
+});*/
 
 gulp.task('scripts', ['clean-js'],function(){
     gulp.src(SOURCEPATH.jsSource)
