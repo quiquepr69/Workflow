@@ -38,7 +38,7 @@ gulp.task('sass', function(){
     sassFiles =  gulp.src(SOURCEPATH.sass)
     .pipe(autoPrefix())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-        return merge(sassFiles, bootstraCSS)
+        return merge(bootstraCSS, sassFiles)
         .pipe(concat('site.css'))
         .pipe(gulp.dest(SITEPATH.css));
     
