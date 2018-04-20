@@ -17462,7 +17462,7 @@ Bootstrap = require('bootstrap');
 mustache = require('mustache');
 
 $(document).ready(function(){
-    alert('jquery, bootstrap and mustache loaded');
+    
 });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
