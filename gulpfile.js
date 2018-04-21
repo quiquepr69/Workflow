@@ -36,8 +36,8 @@ gulp.task('clean-js', function(){
 gulp.task('sass', function(){
     var bootstraCSS = gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css');
     var sassFiles;
+   
     sassFiles =  gulp.src(SOURCEPATH.sass)
-    //  var fontAwesome = gulp.src('./node_modules/@fortawesome/fontawesome/styles.css');
     .pipe(autoPrefix())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         return merge(bootstraCSS, sassFiles)
@@ -45,10 +45,15 @@ gulp.task('sass', function(){
         .pipe(gulp.dest(SITEPATH.css));
 });
 
-/*gulp.task('moveFonts', function(){
-    gulp.src('./node_modules/@fortawesome/fontawesome/styles.css')
-        .pipe(gulp.dest(SITEPATH.css));
-});*/
+gulp.task('moveCSS', function(){
+    gulp.src('./node_modules/font-awesome/css/font-awesome.min.css')
+    .pipe(gulp.dest(SITEPATH.css));
+});
+
+gulp.task('moveFonts', function(){
+    gulp.src('./node_modules/font-awesome/fonts/fontawesome-webfont.*')
+        .pipe(gulp.dest(SITEPATH.fonts))
+  });
 
 gulp.task('scripts', ['clean-js'],function(){
     gulp.src(SOURCEPATH.jsSource)
@@ -70,7 +75,7 @@ gulp.task('serve', ['sass'], function(){
     })
 });
 //watches
-gulp.task('watch', ['sass','serve','copy','scripts','clean-html','clean-js'], function(){
+gulp.task('watch', ['sass','serve','copy','scripts','clean-html','clean-js', 'moveFonts','moveCSS'], function(){
     gulp.watch([SOURCEPATH.sass], ['sass']);
     gulp.watch([SOURCEPATH.html], ['copy']);
     gulp.watch([SOURCEPATH.jsSource], ['scripts']);
