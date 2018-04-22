@@ -122,3 +122,5 @@ gulp.task('watch', ['sass','serve','copy','scripts','clean-html','clean-js', 'mo
 });
 //default call to gulp
 gulp.task('default',['watch']);
+
+gulp.task('production',['compress','compressCSS']);
