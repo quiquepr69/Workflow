@@ -9,6 +9,9 @@ const concat = require('gulp-concat');
 const merge = require('merge-stream');
 const newer = require('gulp-newer');
 const imgMin = require('gulp-imagemin');
+const minify = require('gulp-minify');
+const rename = require('gulp-rename');
+const cssMin = require('gulp-cssmin');
 
 //variables for paths
 
@@ -49,6 +52,8 @@ gulp.task('sass', function(){
         .pipe(gulp.dest(SITEPATH.css));
 });
 
+
+
 gulp.task('moveCSS', function(){
     gulp.src('./node_modules/font-awesome/css/font-awesome.min.css')
     .pipe(gulp.dest(SITEPATH.css));
@@ -72,7 +77,29 @@ gulp.task('scripts', ['clean-js'],function(){
     .pipe(browserify())
     .pipe(gulp.dest(SITEPATH.js))
 });
+//production tasks
+gulp.task('compress',function(){
+    gulp.src(SOURCEPATH.jsSource)
+    .pipe(concat('main.js'))
+    .pipe(browserify())
+    .pipe(minify())
+    .pipe(gulp.dest(SITEPATH.js))
+});
 
+gulp.task('compressCSS', function(){
+    var bootstraCSS = gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css');
+    var sassFiles;
+   
+    sassFiles =  gulp.src(SOURCEPATH.sass)
+    .pipe(autoPrefix())
+    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+        return merge(bootstraCSS, sassFiles)
+        .pipe(concat('site.css'))
+        .pipe(cssMin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(SITEPATH.css));
+});
+//end of production tasks
 gulp.task('copy', ['clean-html'], function(){
     gulp.src(SOURCEPATH.html)
     .pipe(gulp.dest(SITEPATH.root));
@@ -89,7 +116,9 @@ gulp.task('serve', ['sass'], function(){
 gulp.task('watch', ['sass','serve','copy','scripts','clean-html','clean-js', 'moveFonts','moveCSS', 'images'], function(){
     gulp.watch([SOURCEPATH.sass], ['sass']);
     gulp.watch([SOURCEPATH.html], ['copy']);
+    gulp.watch([SOURCEPATH.html], ['images']);
     gulp.watch([SOURCEPATH.jsSource], ['scripts']);
+   
 });
 //default call to gulp
 gulp.task('default',['watch']);
