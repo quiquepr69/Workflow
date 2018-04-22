@@ -1,4 +1,4 @@
 node_modules
-site
+./site
 .DS_Store
 .gitignore
